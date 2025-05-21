@@ -25,14 +25,17 @@ void* perTest1(char *pCA)
 {
 	Cgxper BusObj;
 	tagperTest2 BusParam = {0x00};
+	tagperTest3 MemParam;
 
 	DEALTRY{
 		if( !BusObj.Init(pCA) )
 			return NULL;
 
-      BusObj.GetValue( "request", BusParam.sRequest, sizeof(BusParam.sRequest) );
+		memset(&MemParam,0,sizeof(MemParam));
 
-		  BusObj.perTest2(BusParam);
+      		BusObj.GetValue( "request", BusParam.sRequest, sizeof(BusParam.sRequest) );
+
+		BusObj.perTest2(MemParam);
 	}DEALCATCH();
 
 	BusObj.Exit();
