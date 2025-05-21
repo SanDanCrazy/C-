@@ -41,3 +41,24 @@ void* perTest1(char *pCA)
 	BusObj.Exit();
 	return NULL;
 }
+
+void* perTest3(char *pCA)
+{
+	Cgxper BusObj;
+	tagperTest2 BusParam;
+	tagperTest3 MemParam;
+
+	DEALTRY{
+		if( !BusObj.Init(pCA) )
+			return NULL;
+
+		memset(&MemParam,0,sizeof(MemParam));
+
+      		BusObj.GetValue( "request", BusParam.sRequest, sizeof(BusParam.sRequest) );
+
+		BusObj.perTest2(BusParam);
+	}DEALCATCH();
+
+	BusObj.Exit();
+	return NULL;
+}
